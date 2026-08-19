@@ -5,14 +5,16 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafb);
 }
+
+/* Dark theme base */
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
+  color: #e6eef8;
+  background-color: #0b1220;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -48,12 +50,12 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #7dd3fc;
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #4fd1c5;
 }
 
 h1 {
@@ -63,15 +65,15 @@ h1 {
 input,
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255,255,255,0.04);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  color: #0f0f0f;
-  background-color: #ffffff;
-  transition: border-color 0.25s;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  color: #e6eef8;
+  background-color: rgba(255,255,255,0.02);
+  transition: border-color 0.25s, background-color 0.15s;
+  box-shadow: 0 4px 18px rgba(2,6,23,0.6);
 }
 
 button {
@@ -114,3 +116,103 @@ button {
     background-color: #0f0f0f69;
   }
 }
+
+/* App layout and CRUD styles */
+.app-header {
+  background: linear-gradient(90deg, #071025, #0b1220);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.app-header nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+.app-header a {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 1px 3px rgba(2,6,23,0.6);
+}
+
+section {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 18px;
+  background: linear-gradient(180deg, #0f1724, #0b1220);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(2,6,23,0.6);
+  text-align: left;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #cfe7ff;
+}
+
+input[type="text"], input[type="email"] {
+  min-width: 220px;
+  background: rgba(255,255,255,0.02);
+  color: #e6eef8;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+
+ul { list-style: none; padding: 0; margin: 12px 0 0 0; }
+li { display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.03); }
+
+.muted { color: #9aa7b8; font-size: 0.95rem; }
+
+.actions { margin-left: auto; display:flex; gap:8px; align-items:center; }
+
+button.secondary {
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.03); color: #e6eef8; padding: 8px 10px; border-radius:8px;
+}
+
+@media (max-width: 600px) {
+  .container { padding-top: 6vh; }
+  section { margin: 12px; padding: 12px; }
+  .app-header nav { gap: 8px; }
+}
+
+/* Rich text editor */
+.rte-toolbar { display:flex; gap:6px; margin-bottom:8px; }
+.rte-toolbar button { padding:6px 8px; border-radius:6px; background:rgba(255,255,255,0.02); color:inherit; border:1px solid rgba(255,255,255,0.03); }
+.rte-editor { min-height:120px; padding:12px; border-radius:8px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); }
+
+.error-text { color: #ffb4b4; font-size:0.9rem; margin-top:6px; }
+
+.field-row { display:flex; gap:12px; align-items:center; }
+.field-row .actions { margin-left: auto; }
+
+/* Card header + description layout */
+.card-header { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:12px; }
+.card-header h2 { margin:0; }
+.card-meta { display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
+.card-description { background: rgba(255,255,255,0.01); padding:12px; border-radius:8px; margin-top:8px; }
+
+select[multiple] { min-height:96px; padding:8px; border-radius:8px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:inherit; }
+
+/* Resume builder / preview styles */
+.resume-list li { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.03); }
+.resume-builder ul { list-style:none; padding:0; margin:0; }
+.resume-builder li { padding:10px; margin-bottom:8px; background:rgba(255,255,255,0.02); border-radius:8px; display:flex; justify-content:space-between; align-items:center; cursor:grab; }
+.resume-builder li:active { cursor:grabbing; }
+.resume-preview { background: linear-gradient(180deg,#0f1724,#071025); padding:18px; border-radius:10px; color:inherit; }
+.resume-preview .section { margin-bottom:12px; }
+
