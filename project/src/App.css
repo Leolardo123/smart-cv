@@ -85,7 +85,7 @@ button:hover {
 }
 button:active {
   border-color: #396cd8;
-  background-color: #e8e8e8;
+  background-color: rgba(255,255,255,0.06);
 }
 
 input,
@@ -147,6 +147,7 @@ section {
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(2,6,23,0.6);
   text-align: left;
+  color: #e6eef8;
 }
 
 h2 {
@@ -195,6 +196,11 @@ button.secondary {
 .rte-toolbar button { padding:6px 8px; border-radius:6px; background:rgba(255,255,255,0.02); color:inherit; border:1px solid rgba(255,255,255,0.03); }
 .rte-editor { min-height:120px; padding:12px; border-radius:8px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); }
 
+/* Force rich text content to inherit editor color to avoid pasted inline black text */
+.rte-editor, .rte-editor * {
+  color: inherit !important;
+}
+
 .error-text { color: #ffb4b4; font-size:0.9rem; margin-top:6px; }
 
 .field-row { display:flex; gap:12px; align-items:center; }
@@ -204,7 +210,7 @@ button.secondary {
 .card-header { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:12px; }
 .card-header h2 { margin:0; }
 .card-meta { display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
-.card-description { background: rgba(255,255,255,0.01); padding:12px; border-radius:8px; margin-top:8px; }
+.card-description { background: rgba(255,255,255,0.01); padding:12px; border-radius:8px; margin-top:8px; color: #e6eef8 }
 
 select[multiple] { min-height:96px; padding:8px; border-radius:8px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:inherit; }
 
@@ -213,6 +219,6 @@ select[multiple] { min-height:96px; padding:8px; border-radius:8px; background:r
 .resume-builder ul { list-style:none; padding:0; margin:0; }
 .resume-builder li { padding:10px; margin-bottom:8px; background:rgba(255,255,255,0.02); border-radius:8px; display:flex; justify-content:space-between; align-items:center; cursor:grab; }
 .resume-builder li:active { cursor:grabbing; }
-.resume-preview { background: linear-gradient(180deg,#0f1724,#071025); padding:18px; border-radius:10px; color:inherit; }
+.resume-preview { background: linear-gradient(180deg,#0f1724,#071025); padding:18px; border-radius:10px; color: #e6eef8; }
 .resume-preview .section { margin-bottom:12px; }
 

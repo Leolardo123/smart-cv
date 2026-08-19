@@ -11,7 +11,13 @@ import { getAll as getEducation } from "../../services/educationService";
 function buildHtml(title: string, bodyHtml: string) {
   const lang = getLocale() || "pt";
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><title>${title}</title>
-  <style>body{font-family:Arial,Helvetica,sans-serif;padding:24px;color:#0f1724} h1{font-size:20px} h2{font-size:16px;margin:8px 0} .section{margin-bottom:16px}</style>
+  <style>
+    html,body{height:100%;margin:0}
+    body{font-family:Arial,Helvetica,sans-serif;padding:24px;background:#ffffff;color:#0f1724}
+    h1{font-size:20px}
+    h2{font-size:16px;margin:8px 0}
+    .section{margin-bottom:16px}
+  </style>
   </head><body>${bodyHtml}</body></html>`;
 }
 
