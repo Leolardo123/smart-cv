@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAll, remove, Profile, setActiveProfileId, getActiveProfileId } from "../../services/profileService";
+import {
+  getAll,
+  remove,
+  Profile,
+  setActiveProfileId,
+  getActiveProfileId,
+} from "../../services/profileService";
 import { t } from "../../i18n";
 
 export default function ProfilesList() {
@@ -10,7 +16,9 @@ export default function ProfilesList() {
     setItems(getAll());
   }, []);
 
-  const [activeId, setActiveId] = React.useState<string | null>(getActiveProfileId());
+  const [activeId, setActiveId] = React.useState<string | null>(
+    getActiveProfileId(),
+  );
 
   useEffect(() => {
     function onChange() {
@@ -23,7 +31,7 @@ export default function ProfilesList() {
   }, []);
 
   function handleDelete(id: string) {
-    if (!confirm(t('confirmDelete'))) return;
+    if (!confirm(t("confirmDelete"))) return;
     remove(id);
     setItems(getAll());
   }
@@ -36,17 +44,26 @@ export default function ProfilesList() {
         {items.length === 0 && <li>{t("noItems")}</li>}
         {items.map((p) => (
           <li key={p.id} style={{ marginBottom: 6 }}>
-            <Link to={`/profiles/${p.id}`} style={{ fontWeight: activeId === p.id ? "700" : undefined }}>
-              {p.name || t('noName')}
+            <Link
+              to={`/profiles/${p.id}`}
+              style={{ fontWeight: activeId === p.id ? "700" : undefined }}
+            >
+              {p.name || t("noName")}
             </Link>
             {p.title && <span> — {p.title}</span>}
             <span style={{ marginLeft: 8 }}>
               <Link to={`/profiles/${p.id}/edit`}>{t("edit")}</Link>
             </span>
-            <button style={{ marginLeft: 8 }} onClick={() => setActiveProfileId(p.id)}>
+            <button
+              style={{ marginLeft: 8 }}
+              onClick={() => setActiveProfileId(p.id)}
+            >
               {t("select")}
             </button>
-            <button style={{ marginLeft: 8 }} onClick={() => handleDelete(p.id)}>
+            <button
+              style={{ marginLeft: 8 }}
+              onClick={() => handleDelete(p.id)}
+            >
               {t("delete")}
             </button>
           </li>

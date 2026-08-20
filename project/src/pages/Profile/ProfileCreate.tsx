@@ -4,7 +4,6 @@ import { create } from "../../services/profileService";
 import RichTextEditor from "../../components/RichTextEditor";
 import { t } from "../../i18n";
 
-
 export default function ProfileCreate() {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
@@ -16,29 +15,43 @@ export default function ProfileCreate() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim()) { setError(t('nameRequired')); return; }
+    if (!name.trim()) {
+      setError(t("nameRequired"));
+      return;
+    }
     const p = create({ name, title, email, notes });
     navigate(`/profiles/${p.id}`);
   }
 
   return (
     <section>
-      <h2>{t("create") } {t("profile")}</h2>
+      <h2>
+        {t("create")} {t("profile")}
+      </h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>{t('name')}</label>
-          <input value={name} onChange={(e) => setName(e.currentTarget.value)} />
+          <label>{t("name")}</label>
+          <input
+            value={name}
+            onChange={(e) => setName(e.currentTarget.value)}
+          />
         </div>
         <div>
-          <label>{t('titleLabel')}</label>
-          <input value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
+          <label>{t("titleLabel")}</label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.currentTarget.value)}
+          />
         </div>
         <div>
-          <label>{t('email')}</label>
-          <input value={email} onChange={(e) => setEmail(e.currentTarget.value)} />
+          <label>{t("email")}</label>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.currentTarget.value)}
+          />
         </div>
         <div>
-          <label>{t('notes')}</label>
+          <label>{t("notes")}</label>
           <RichTextEditor value={notes} onChange={setNotes} />
         </div>
         {error && <div className="error-text">{error}</div>}

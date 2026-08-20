@@ -3,7 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { create } from "../../services/resumeService";
 import { t } from "../../i18n";
 
-const DEFAULT_SECTIONS = ["profile", "experiences", "projects", "skills", "education"];
+const DEFAULT_SECTIONS = [
+  "profile",
+  "experiences",
+  "projects",
+  "skills",
+  "education",
+];
 
 export default function ResumeCreate() {
   const [name, setName] = useState("");
@@ -18,13 +24,18 @@ export default function ResumeCreate() {
 
   return (
     <section>
-      <h2>{t('create')} {t('resume')}</h2>
+      <h2>
+        {t("create")} {t("resume")}
+      </h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>{t('name')}</label>
-          <input value={name} onChange={(e) => setName(e.currentTarget.value)} />
+          <label>{t("name")}</label>
+          <input
+            value={name}
+            onChange={(e) => setName(e.currentTarget.value)}
+          />
         </div>
-        <button type="submit">{t('create')}</button>
+        <button type="submit">{t("create")}</button>
       </form>
     </section>
   );

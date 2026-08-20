@@ -40,32 +40,52 @@ export default function ResumePreview() {
     for (const s of r.sections) {
       if (s === "profile") {
         const p = profiles[0];
-        if (p) parts.push(`<div class="section"><h1>${p.name}</h1><p>${p.title || ""}</p><p>${p.email || ""}</p></div>`);
+        if (p)
+          parts.push(
+            `<div class="section"><h1>${p.name}</h1><p>${p.title || ""}</p><p>${p.email || ""}</p></div>`,
+          );
       }
       if (s === "experiences") {
         if (experiences.length) {
-          parts.push(`<div class="section"><h2>${t("experiences")}</h2>${experiences
-            .map((e) => `<div><strong>${e.title}</strong> <em>${e.company || ""}</em><div>${e.start || ""} — ${e.end || ""}</div><div>${e.description || ""}</div></div>`)
-            .join("")}</div>`);
+          parts.push(
+            `<div class="section"><h2>${t("experiences")}</h2>${experiences
+              .map(
+                (e) =>
+                  `<div><strong>${e.title}</strong> <em>${e.company || ""}</em><div>${e.start || ""} — ${e.end || ""}</div><div>${e.description || ""}</div></div>`,
+              )
+              .join("")}</div>`,
+          );
         }
       }
       if (s === "projects") {
         if (projects.length) {
-          parts.push(`<div class="section"><h2>${t("projects")}</h2>${projects
-            .map((p) => `<div><strong>${p.name}</strong><div>${p.link || ""}</div><div>${p.summary || ""}</div></div>`)
-            .join("")}</div>`);
+          parts.push(
+            `<div class="section"><h2>${t("projects")}</h2>${projects
+              .map(
+                (p) =>
+                  `<div><strong>${p.name}</strong><div>${p.link || ""}</div><div>${p.summary || ""}</div></div>`,
+              )
+              .join("")}</div>`,
+          );
         }
       }
       if (s === "skills") {
         if (skills.length) {
-          parts.push(`<div class="section"><h2>${t("skills")}</h2><div>${skills.map((s) => `<span>${s.name}</span>`).join(", ")}</div></div>`);
+          parts.push(
+            `<div class="section"><h2>${t("skills")}</h2><div>${skills.map((s) => `<span>${s.name}</span>`).join(", ")}</div></div>`,
+          );
         }
       }
       if (s === "education") {
         if (education.length) {
-          parts.push(`<div class="section"><h2>${t("education")}</h2>${education
-            .map((e) => `<div><strong>${e.school}</strong><div>${e.degree || ""} • ${e.start || ""} — ${e.end || ""}</div><div>${e.notes || ""}</div></div>`)
-            .join("")}</div>`);
+          parts.push(
+            `<div class="section"><h2>${t("education")}</h2>${education
+              .map(
+                (e) =>
+                  `<div><strong>${e.school}</strong><div>${e.degree || ""} • ${e.start || ""} — ${e.end || ""}</div><div>${e.notes || ""}</div></div>`,
+              )
+              .join("")}</div>`,
+          );
         }
       }
     }
@@ -106,11 +126,19 @@ export default function ResumePreview() {
 
   return (
     <section>
-      <h2>{t("resume")} — {t('preview')}</h2>
+      <h2>
+        {t("resume")} — {t("preview")}
+      </h2>
       <div style={{ marginBottom: 12 }}>
         <button onClick={exportPdf}>{t("previewExport")}</button>
       </div>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <div>
+        <iframe
+          title={t("preview")}
+          srcDoc={html}
+          style={{ width: "100%", height: "100%" }}
+        />
+      </div>
     </section>
   );
 }

@@ -67,13 +67,15 @@ export default function ResumeEdit() {
 
   return (
     <section>
-      <h2>{t('edit')} {t('resume')}</h2>
+      <h2>
+        {t("edit")} {t("resume")}
+      </h2>
       <div>
-        <label>{t('name')}</label>
+        <label>{t("name")}</label>
         <input value={name} onChange={(e) => setName(e.currentTarget.value)} />
       </div>
 
-      <h3>{t('sectionsReorder')}</h3>
+      <h3>{t("sectionsReorder")}</h3>
       <ul>
         {sections.map((s, i) => (
           <li
@@ -86,7 +88,7 @@ export default function ResumeEdit() {
             <strong>{ALL_SECTIONS.find((x) => x.key === s)?.label || s}</strong>
             <div className="actions">
               <button className="secondary" onClick={() => removeSection(s)}>
-                {t('remove')}
+                {t("remove")}
               </button>
             </div>
           </li>
@@ -94,9 +96,12 @@ export default function ResumeEdit() {
       </ul>
 
       <div>
-        <label>{t('addSection')}</label>
-        <select onChange={(e) => addSection(e.currentTarget.value)} defaultValue="">
-          <option value="">{t('selectSection')}</option>
+        <label>{t("addSection")}</label>
+        <select
+          onChange={(e) => addSection(e.currentTarget.value)}
+          defaultValue=""
+        >
+          <option value="">{t("selectSection")}</option>
           {available.map((a) => (
             <option key={a.key} value={a.key}>
               {a.label}
@@ -106,8 +111,8 @@ export default function ResumeEdit() {
       </div>
 
       <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
-        <button onClick={save}>{t('save')}</button>
-        <button onClick={preview}>{t('previewExport')}</button>
+        <button onClick={save}>{t("save")}</button>
+        <button onClick={preview}>{t("previewExport")}</button>
       </div>
     </section>
   );

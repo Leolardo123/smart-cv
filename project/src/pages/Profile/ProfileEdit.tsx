@@ -26,33 +26,47 @@ export default function ProfileEdit() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!id) return;
-    if (!name.trim()) { setError('Name is required'); return; }
+    if (!name.trim()) {
+      setError("Name is required");
+      return;
+    }
     update(id, { name, title, email, notes });
     navigate(`/profiles/${id}`);
   }
 
   return (
     <section>
-      <h2>{t('edit')} {t('profile')}</h2>
+      <h2>
+        {t("edit")} {t("profile")}
+      </h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>{t('name')}</label>
-          <input value={name} onChange={(e) => setName(e.currentTarget.value)} />
+          <label>{t("name")}</label>
+          <input
+            value={name}
+            onChange={(e) => setName(e.currentTarget.value)}
+          />
         </div>
         <div>
-          <label>{t('titleLabel')}</label>
-          <input value={title} onChange={(e) => setTitle(e.currentTarget.value)} />
+          <label>{t("titleLabel")}</label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.currentTarget.value)}
+          />
         </div>
         <div>
-          <label>{t('email')}</label>
-          <input value={email} onChange={(e) => setEmail(e.currentTarget.value)} />
+          <label>{t("email")}</label>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.currentTarget.value)}
+          />
         </div>
         <div>
-          <label>{t('notes')}</label>
+          <label>{t("notes")}</label>
           <RichTextEditor value={notes} onChange={setNotes} />
         </div>
         {error && <div className="error-text">{error}</div>}
-        <button type="submit">{t('save')}</button>
+        <button type="submit">{t("save")}</button>
       </form>
     </section>
   );

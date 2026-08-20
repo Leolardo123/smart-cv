@@ -16,12 +16,12 @@ export default function ProfileDetail() {
 
   function handleDelete() {
     if (!id) return;
-    if (!confirm(t('confirmDelete'))) return;
+    if (!confirm(t("confirmDelete"))) return;
     remove(id);
     navigate("/profiles");
   }
 
-  if (!profile) return <p className="muted">{t('notFound')}</p>;
+  if (!profile) return <p className="muted">{t("notFound")}</p>;
 
   return (
     <section>
@@ -29,9 +29,13 @@ export default function ProfileDetail() {
       <p className="muted">{profile.title}</p>
       <p className="muted">{profile.email}</p>
       <div dangerouslySetInnerHTML={{ __html: profile.notes || "" }} />
-      <Link to={`/profiles/${profile.id}/edit`}>{t('edit')}</Link>
-      <button className="secondary" style={{ marginLeft: 8 }} onClick={handleDelete}>
-        {t('delete')}
+      <Link to={`/profiles/${profile.id}/edit`}>{t("edit")}</Link>
+      <button
+        className="secondary"
+        style={{ marginLeft: 8 }}
+        onClick={handleDelete}
+      >
+        {t("delete")}
       </button>
     </section>
   );
