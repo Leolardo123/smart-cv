@@ -1,5 +1,5 @@
 const translations = {
-  pt: {
+  pt_br: {
     profile: "Perfil",
     experiences: "Experiências",
     projects: "Projetos",
@@ -41,7 +41,6 @@ const translations = {
     back: "Voltar",
     createResume: "Criar Currículo",
     preview: "Pré-visualizar",
-    previewExport: "Visualizar / Exportar PDF",
     title: "Título",
     company: "Empresa",
     start: "Início",
@@ -96,7 +95,6 @@ const translations = {
     back: "Back",
     createResume: "Create Resume",
     preview: "Preview",
-    previewExport: "Preview / Export PDF",
     title: "Title",
     company: "Company",
     start: "Start",

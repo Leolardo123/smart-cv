@@ -1,4 +1,5 @@
 import "./App.css";
+import "./Nav.css";
 import React from "react";
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import { getActiveProfile } from "./services/profileService";
@@ -32,6 +33,7 @@ import ResumePreview from "./pages/Resume/ResumePreview";
 function App() {
   const [active, setActive] = React.useState(getActiveProfile());
   const [locale, setLocalState] = React.useState<string>(getLocale());
+  const [navVisible, setNavVisible] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     function onLocale() {
@@ -49,29 +51,50 @@ function App() {
     return () => window.removeEventListener("activeProfileChange", onChange);
   }, []);
 
+
+
   return (
     <BrowserRouter>
       <header className="app-header">
-        <div className="locale-select">
-          <select value={locale} onChange={(e) => setLocale(e.target.value as any)}>
-            {availableLocales().map((l) => (
-              <option key={l} value={l}>
-                {l}
-              </option>
-            ))}
-          </select>
+        <button
+          className={`nav-button ${navVisible ? "nav-button-active" : ""}`}
+          onClick={() => setNavVisible(!navVisible)}
+        >
+          <span>☰</span>
+        </button>
+        <div
+          className={`nav-main ${navVisible ? "nav-visible" : "nav-hidden"}`}
+        >
+          <nav>
+            <Link to="/profiles">{t("profile")}</Link>
+            <Link to="/experiences">{t("experiences")}</Link>
+            <Link to="/projects">{t("projects")}</Link>
+            <Link to="/skills">{t("skills")}</Link>
+            <Link to="/education">{t("education")}</Link>
+            <Link to="/resumes">{t("resume")}</Link>
+          </nav>
+          <div className="locale-select">
+            <select
+              className="lang-select"
+              value={locale}
+              onChange={(e) => setLocale(e.target.value as any)}
+            >
+              {availableLocales().map((l) => (
+                <option key={l} value={l}>
+                  {l}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <nav>
-          <Link to="/profiles">{t("profile")}</Link>
-          <Link to="/profiles/create">{t("createNewProfile")}</Link>
-          <Link to="/experiences">{t("experiences")}</Link>
-          <Link to="/projects">{t("projects")}</Link>
-          <Link to="/skills">{t("skills")}</Link>
-          <Link to="/education">{t("education")}</Link>
-          <Link to="/resumes">{t("resume")}</Link>
-        </nav>
         <div className="active-profile">
-          {active ? <span>{t("profileLabel")} {active.name}</span> : <span>{t("selectedProfileNone")}</span>}
+          {active ? (
+            <span>
+              {t("profileLabel")} {active.name}
+            </span>
+          ) : (
+            <span>{t("selectedProfileNone")}</span>
+          )}
         </div>
       </header>
       <main className="container">

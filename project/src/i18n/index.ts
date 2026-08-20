@@ -1,7 +1,7 @@
 import translations from "./translations";
 
 const STORAGE_KEY = "locale_v1";
-const DEFAULT_LOCALE: keyof typeof translations = "pt";
+const DEFAULT_LOCALE: keyof typeof translations = "pt_br";
 
 function readLocale(): keyof typeof translations {
   try {
