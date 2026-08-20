@@ -17,17 +17,15 @@ export default function SkillDetail() {
     remove(id);
     nav("/skills");
   }
-  if (!item) return <p className="muted">{t("noItems")}</p>;
+  if (!item) return <p className="text-slate-400">{t("noItems")}</p>;
   return (
-    <section>
-      <h2>{item.name}</h2>
-      <p className="muted">
-        {item.level} • {item.years || ""} {t("years")}
-      </p>
-      <Link to={`/skills/${item.id}/edit`}>{t("edit")}</Link>
-      <button className="secondary" onClick={del}>
-        {t("delete")}
-      </button>
+    <section className="max-w-3xl mx-auto">
+      <h2 className="text-2xl font-semibold">{item.name}</h2>
+      <p className="text-slate-400">{item.level} • {item.years || ""} {t("years")}</p>
+      <div className="flex gap-2 mt-3">
+        <Link className="text-tone1" to={`/skills/${item.id}/edit`}>{t("edit")}</Link>
+        <button className="text-red-400" onClick={del}>{t("delete")}</button>
+      </div>
     </section>
   );
 }

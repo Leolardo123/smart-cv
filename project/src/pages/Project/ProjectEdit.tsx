@@ -37,52 +37,33 @@ export default function ProjectEdit() {
   }
   
   return (
-    <section>
-      <h2>
-        {t("edit")} {t("projects")}
-      </h2>
-      <form onSubmit={submit}>
+    <section className="max-w-3xl mx-auto">
+      <h2 className="text-2xl font-semibold mb-4">{t("edit")} {t("projects")}</h2>
+      <form onSubmit={submit} className="space-y-4 bg-slate-800 p-4 rounded">
         <div>
-          <label>{t("name")}</label>
-          <input
-            value={name}
-            onChange={(e) => setName(e.currentTarget.value)}
-          />
+          <label className="block text-sm text-slate-300">{t("name")}</label>
+          <input className="w-full mt-1 p-2 rounded bg-slate-900 border border-slate-700 text-slate-100" value={name} onChange={(e) => setName(e.currentTarget.value)} />
         </div>
         <div>
-          <label>{t("description")}</label>
-          <RichTextEditor value={summary} onChange={setSummary} />
+          <label className="block text-sm text-slate-300">{t("description")}</label>
+          <div className="mt-1"><RichTextEditor value={summary} onChange={setSummary} /></div>
         </div>
         <div>
-          <label>
-            {t("skills")} ({t("select")})
-          </label>
-          <select
-            multiple
-            value={tags}
-            onChange={(e) => {
-              const selected = Array.from(e.currentTarget.selectedOptions).map(
-                (o) => o.value,
-              );
-              setTags(selected);
-            }}
-          >
+          <label className="block text-sm text-slate-300">{t("skills")} ({t("select")})</label>
+          <select multiple className="w-full mt-1 p-2 rounded bg-slate-900 border border-slate-700 text-slate-100" value={tags} onChange={(e) => { const selected = Array.from(e.currentTarget.selectedOptions).map((o) => o.value); setTags(selected); }}>
             {skills.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.name}
-              </option>
+              <option key={s.id} value={s.id}>{s.name}</option>
             ))}
           </select>
         </div>
         <div>
-          <label>{t("link") || "Link"}</label>
-          <input
-            value={link}
-            onChange={(e) => setLink(e.currentTarget.value)}
-          />
+          <label className="block text-sm text-slate-300">{t("link") || "Link"}</label>
+          <input className="w-full mt-1 p-2 rounded bg-slate-900 border border-slate-700 text-slate-100" value={link} onChange={(e) => setLink(e.currentTarget.value)} />
         </div>
-        {error && <div className="error-text">{error}</div>}
-        <button type="submit">{t("save")}</button>
+        {error && <div className="text-red-400">{error}</div>}
+        <div>
+          <button className="bg-tone1 text-white px-4 py-2 rounded" type="submit">{t("save")}</button>
+        </div>
       </form>
     </section>
   );

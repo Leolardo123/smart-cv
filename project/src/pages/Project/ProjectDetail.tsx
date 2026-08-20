@@ -21,7 +21,7 @@ export default function ProjectDetail() {
     nav("/projects");
   }
 
-  if (!item) return <p className="muted">{t("noItems")}</p>;
+  if (!item) return <p className="text-slate-400">{t("noItems")}</p>;
 
   const skills = getSkills();
 
@@ -31,29 +31,22 @@ export default function ProjectDetail() {
 
   return (
     <section>
-      <div className="card-header">
+      <div className="flex items-start justify-between bg-slate-800 p-4 rounded">
         <div>
-          <h2>{item.name}</h2>
-          <p className="muted">{item.link}</p>
+          <h2 className="text-xl font-semibold">{item.name}</h2>
+          <p className="text-slate-400">{item.link}</p>
         </div>
-        <div className="card-meta">
+        <div className="text-right">
           {techNames.length > 0 && (
-            <p className="muted">
-              {t("skills")}: {techNames.join(", ")}
-            </p>
+            <p className="text-slate-400">{t("skills")}: {techNames.join(", ")}</p>
           )}
-          <div className="actions">
-            <Link to={`/projects/${item.id}/edit`}>{t("edit")}</Link>
-            <button className="secondary" onClick={del}>
-              {t("delete")}
-            </button>
+          <div className="flex items-center gap-2 mt-2">
+            <Link className="text-sm text-slate-300" to={`/projects/${item.id}/edit`}>{t("edit")}</Link>
+            <button className="text-red-400" onClick={del}>{t("delete")}</button>
           </div>
         </div>
       </div>
-      <div
-        className="card-description"
-        dangerouslySetInnerHTML={{ __html: item.summary || "" }}
-      />
+      <div className="mt-4 bg-slate-800 p-4 rounded text-slate-100" dangerouslySetInnerHTML={{ __html: item.summary || "" }} />
     </section>
   );
 }

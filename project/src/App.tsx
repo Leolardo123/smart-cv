@@ -1,5 +1,4 @@
 import "./App.css";
-import "./Nav.css";
 import React from "react";
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import { getActiveProfile } from "./services/profileService";
@@ -28,6 +27,7 @@ import ResumesList from "./pages/Resume/ResumesList";
 import ResumeCreate from "./pages/Resume/ResumeCreate";
 import ResumeEdit from "./pages/Resume/ResumeEdit";
 import ResumePreview from "./pages/Resume/ResumePreview";
+import Button from "./components/Button";
 // Jobs section removed (merged/omitted for now)
 
 function App() {
@@ -55,27 +55,25 @@ function App() {
 
   return (
     <BrowserRouter>
-      <header className="app-header">
-        <button
-          className={`nav-button ${navVisible ? "nav-button-active" : ""}`}
+      <header className="bg-slate-800 border-b border-slate-700 p-4 flex flex-col md:flex-row items-center justify-between gap-3">
+        <Button
+          customCss={`md:hidden block ${navVisible ? "bg-tone1 text-white border-tone1" : ""}`}
           onClick={() => setNavVisible(!navVisible)}
         >
           <span>☰</span>
-        </button>
-        <div
-          className={`nav-main ${navVisible ? "nav-visible" : "nav-hidden"}`}
-        >
-          <nav>
-            <Link to="/profiles">{t("profile")}</Link>
-            <Link to="/experiences">{t("experiences")}</Link>
-            <Link to="/projects">{t("projects")}</Link>
-            <Link to="/skills">{t("skills")}</Link>
-            <Link to="/education">{t("education")}</Link>
-            <Link to="/resumes">{t("resume")}</Link>
+        </Button>
+        <div className={`${navVisible ? "block" : "hidden"} md:flex flex-row gap-4 items-center w-full md:w-auto`}>
+          <nav className="flex flex-wrap gap-4">
+            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/profiles">{t("profile")}</Link>
+            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/experiences">{t("experiences")}</Link>
+            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/projects">{t("projects")}</Link>
+            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/skills">{t("skills")}</Link>
+            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/education">{t("education")}</Link>
+            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/resumes">{t("resume")}</Link>
           </nav>
-          <div className="locale-select">
+          <div className="ml-auto">
             <select
-              className="lang-select"
+              className="bg-slate-800 text-tone1 border border-slate-700 p-2 rounded uppercase"
               value={locale}
               onChange={(e) => setLocale(e.target.value as any)}
             >
@@ -87,7 +85,7 @@ function App() {
             </select>
           </div>
         </div>
-        <div className="active-profile">
+        <div className="truncate max-w-xs text-slate-100 mt-2 md:mt-0">
           {active ? (
             <span>
               {t("profileLabel")} {active.name}
@@ -97,7 +95,7 @@ function App() {
           )}
         </div>
       </header>
-      <main className="container">
+      <main className="max-w-3xl mx-auto p-4">
         <Routes>
           <Route path="/" element={<Navigate to="/profiles" replace />} />
           <Route path="/profiles" element={<ProfilesList />} />

@@ -21,22 +21,18 @@ export default function ProfileDetail() {
     navigate("/profiles");
   }
 
-  if (!profile) return <p className="muted">{t("notFound")}</p>;
+  if (!profile) return <p className="text-slate-400">{t("notFound")}</p>;
 
   return (
-    <section>
-      <h2>{profile.name}</h2>
-      <p className="muted">{profile.title}</p>
-      <p className="muted">{profile.email}</p>
-      <div dangerouslySetInnerHTML={{ __html: profile.notes || "" }} />
-      <Link to={`/profiles/${profile.id}/edit`}>{t("edit")}</Link>
-      <button
-        className="secondary"
-        style={{ marginLeft: 8 }}
-        onClick={handleDelete}
-      >
-        {t("delete")}
-      </button>
+    <section className="max-w-3xl mx-auto">
+      <h2 className="text-2xl font-semibold">{profile.name}</h2>
+      <p className="text-slate-400">{profile.title}</p>
+      <p className="text-slate-400">{profile.email}</p>
+      <div className="mt-3 bg-slate-800 p-4 rounded text-slate-100" dangerouslySetInnerHTML={{ __html: profile.notes || "" }} />
+      <div className="flex gap-2 mt-3">
+        <Link className="text-tone1" to={`/profiles/${profile.id}/edit`}>{t("edit")}</Link>
+        <button className="text-red-400" onClick={handleDelete}>{t("delete")}</button>
+      </div>
     </section>
   );
 }
