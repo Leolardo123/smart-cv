@@ -28,6 +28,10 @@ import ResumeCreate from "./pages/Resume/ResumeCreate";
 import ResumeEdit from "./pages/Resume/ResumeEdit";
 import ResumePreview from "./pages/Resume/ResumePreview";
 import Button from "./components/Button";
+import Select from "./components/Select";
+import { Locale } from "./i18n/translations";
+import NavLink from "./components/Nav/NavLink";
+import Nav from "./components/Nav/Nav";
 // Jobs section removed (merged/omitted for now)
 
 function App() {
@@ -63,26 +67,13 @@ function App() {
           <span>☰</span>
         </Button>
         <div className={`${navVisible ? "block" : "hidden"} md:flex flex-row gap-4 items-center w-full md:w-auto`}>
-          <nav className="flex flex-wrap gap-4">
-            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/profiles">{t("profile")}</Link>
-            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/experiences">{t("experiences")}</Link>
-            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/projects">{t("projects")}</Link>
-            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/skills">{t("skills")}</Link>
-            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/education">{t("education")}</Link>
-            <Link className="text-tone1 font-semibold border border-tone1 px-3 py-1 rounded" to="/resumes">{t("resume")}</Link>
-          </nav>
+          <Nav />
           <div className="ml-auto">
-            <select
-              className="bg-slate-800 text-tone1 border border-slate-700 p-2 rounded uppercase"
+            <Select
               value={locale}
-              onChange={(e) => setLocale(e.target.value as any)}
-            >
-              {availableLocales().map((l) => (
-                <option key={l} value={l}>
-                  {l}
-                </option>
-              ))}
-            </select>
+              onChange={(value) => setLocale(value as Locale)}
+              options={availableLocales()}
+            />
           </div>
         </div>
         <div className="truncate max-w-xs text-slate-100 mt-2 md:mt-0">

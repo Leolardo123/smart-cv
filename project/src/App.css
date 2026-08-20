@@ -27,7 +27,10 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
 
+
+:root, [data-theme="default"] {
   --tone-1: #038DB8;
   --tone-2: #1D6C85;
   --tone-3: #224752;
@@ -35,141 +38,13 @@ html {
   --tone-5: #2A3133;
 }
 
-
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.container {
-  max-width: clamp(300px, 80%, 800px);
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-section {
-  background-color: var(--tone-1);
-  height: 100%;
-  width: calc(100% - 2rem);
-  margin: 0 auto;
-  border: 1px solid var(--tone-2);
-  padding: 1rem;
-  border-radius: 8px;
-  text-decoration: none;
-}
-
-.app-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: var(--tone-4);
-  border-bottom: 1px solid var(--tone-2);
-}
-
-.active-profile {
-  white-space: nowrap;
-  max-width: clamp(200px, 50%, 400px);
-  text-overflow: ellipsis;
-  overflow-x: hidden;
-}
-
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  white-space: wrap;
-  gap: 1rem;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.nav-main {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-}
-
-nav a {
-  color: var(--tone-1);
-  text-decoration: none;
-  font-weight: bold;
-  border: 1px solid var(--tone-1);
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-}
-
-nav a:hover {
-  color: white;
-  transform: scale(1.2);
-}
-
-.nav-button {
-  display: none;
-  background-color: var(--tone-4);
-  color: var(--tone-1);
-  border: 1px solid var(--tone-2);
-  padding: 0.5rem;
-  border-radius: 4px;
-  width: 100%;
-}
-
-.nav-button-active {
-  background-color: var(--tone-1);
-  color: white;
-  border: 1px solid var(--tone-1);
-}
-
-.nav-visible {
-  display: flex;
-}
-
-.nav-hidden {
-  display: flex;
-}
-
-.lang-select {
-  background-color: var(--tone-4);
-  color: var(--tone-1);
-  border: 1px solid var(--tone-2);
-  padding: 0.5rem;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-
-@media (max-width: 768px) {
-  .nav-button {
-    display: block;
-  }
-
-  .app-header {
-    flex-direction: column;
-  }
-
-  nav {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  nav a {
-    width: calc(100% - 2rem);
-    text-align: center;
-  }
-
-  .nav-main {
-    padding-top: 1rem;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .nav-hidden {
-    display: none;
-  }
-
-  .lang-select {
-    width: 100%;
-    margin-bottom: 1.5rem;
-  }
+.expand:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
 }

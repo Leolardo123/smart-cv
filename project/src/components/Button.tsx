@@ -1,4 +1,5 @@
 import React from 'react'
+import { cl } from '../utils/merge-styles';
 
 interface ButtonProps {
     onClick: () => void;
@@ -9,7 +10,7 @@ interface ButtonProps {
 export default function Button({ onClick, customCss, children }: ButtonProps) {
   return (
     <button
-      className={`bg-slate-800 text-tone1 border border-slate-700 p-2 rounded w-full ${customCss || ""}`}
+      className={cl("bg-slate-800 text-tone1 border border-slate-700 p-2 rounded w-full", customCss)}
       onClick={onClick}
     >
       {children}
