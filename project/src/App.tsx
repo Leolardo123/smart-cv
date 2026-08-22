@@ -1,41 +1,20 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
-import { getActiveProfile } from "./services/profileService";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { t, getLocale, setLocale, availableLocales } from "./i18n";
-import ProfilesList from "./pages/Profile/ProfilesList";
-import ProfileCreate from "./pages/Profile/ProfileCreate";
-import ProfileEdit from "./pages/Profile/ProfileEdit";
-import ProfileDetail from "./pages/Profile/ProfileDetail";
-import ExperiencesList from "./pages/Experience/ExperiencesList";
-import ExperienceCreate from "./pages/Experience/ExperienceCreate";
-import ExperienceEdit from "./pages/Experience/ExperienceEdit";
-import ExperienceDetail from "./pages/Experience/ExperienceDetail";
-import ProjectsList from "./pages/Project/ProjectsList";
-import ProjectCreate from "./pages/Project/ProjectCreate";
-import ProjectEdit from "./pages/Project/ProjectEdit";
-import ProjectDetail from "./pages/Project/ProjectDetail";
-import SkillsList from "./pages/Skill/SkillsList";
-import SkillCreate from "./pages/Skill/SkillCreate";
-import SkillEdit from "./pages/Skill/SkillEdit";
-import SkillDetail from "./pages/Skill/SkillDetail";
-import EducationList from "./pages/Education/EducationList";
-import EducationCreate from "./pages/Education/EducationCreate";
-import EducationEdit from "./pages/Education/EducationEdit";
-import EducationDetail from "./pages/Education/EducationDetail";
-import ResumesList from "./pages/Resume/ResumesList";
-import ResumeCreate from "./pages/Resume/ResumeCreate";
-import ResumeEdit from "./pages/Resume/ResumeEdit";
-import ResumePreview from "./pages/Resume/ResumePreview";
 import Button from "./components/Button";
 import Select from "./components/Select";
 import { Locale } from "./i18n/translations";
-import NavLink from "./components/Nav/NavLink";
 import Nav from "./components/Nav/Nav";
+import ProfilesList from "./pages/profiles/ProfilesList";
+import ExperienceList from "./pages/experiences/ExperienceList";
+import ProjectList from "./pages/projects/ProjectList";
+import SkillList from "./pages/skills/SkillList";
+import EducationList from "./pages/education/EducationList";
+import ResumeList from "./pages/resumes/ResumeList";
 // Jobs section removed (merged/omitted for now)
 
 function App() {
-  const [active, setActive] = React.useState(getActiveProfile());
   const [locale, setLocalState] = React.useState<string>(getLocale());
   const [navVisible, setNavVisible] = React.useState<boolean>(false);
 
@@ -47,26 +26,20 @@ function App() {
     return () => window.removeEventListener("localeChange", onLocale);
   }, []);
 
-  React.useEffect(() => {
-    function onChange() {
-      setActive(getActiveProfile());
-    }
-    window.addEventListener("activeProfileChange", onChange);
-    return () => window.removeEventListener("activeProfileChange", onChange);
-  }, []);
-
-
+  React.useEffect(() => {}, []);
 
   return (
     <BrowserRouter>
       <header className="bg-slate-800 border-b border-slate-700 p-4 flex flex-col md:flex-row items-center justify-between gap-3">
         <Button
-          customCss={`md:hidden block ${navVisible ? "bg-tone1 text-white border-tone1" : ""}`}
+          className={`md:hidden block ${navVisible ? "bg-tone1 text-white border-tone1" : ""}`}
           onClick={() => setNavVisible(!navVisible)}
         >
           <span>☰</span>
         </Button>
-        <div className={`${navVisible ? "block" : "hidden"} md:flex flex-row gap-4 items-center w-full md:w-auto`}>
+        <div
+          className={`${navVisible ? "block" : "hidden"} md:flex flex-row gap-4 items-center w-full md:w-auto`}
+        >
           <Nav />
           <div className="ml-auto">
             <Select
@@ -77,10 +50,8 @@ function App() {
           </div>
         </div>
         <div className="truncate max-w-xs text-slate-100 mt-2 md:mt-0">
-          {active ? (
-            <span>
-              {t("profileLabel")} {active.name}
-            </span>
+          {true ? (
+            <span>{t("profileLabel")} PLACEHOLDER</span>
           ) : (
             <span>{t("selectedProfileNone")}</span>
           )}
@@ -89,35 +60,12 @@ function App() {
       <main className="max-w-3xl mx-auto p-4">
         <Routes>
           <Route path="/" element={<Navigate to="/profiles" replace />} />
-          <Route path="/profiles" element={<ProfilesList />} />
-          <Route path="/profiles/create" element={<ProfileCreate />} />
-          <Route path="/profiles/:id/edit" element={<ProfileEdit />} />
-          <Route path="/profiles/:id" element={<ProfileDetail />} />
-
-          <Route path="/experiences" element={<ExperiencesList />} />
-          <Route path="/experiences/create" element={<ExperienceCreate />} />
-          <Route path="/experiences/:id/edit" element={<ExperienceEdit />} />
-          <Route path="/experiences/:id" element={<ExperienceDetail />} />
-
-          <Route path="/projects" element={<ProjectsList />} />
-          <Route path="/projects/create" element={<ProjectCreate />} />
-          <Route path="/projects/:id/edit" element={<ProjectEdit />} />
-          <Route path="/projects/:id" element={<ProjectDetail />} />
-
-          <Route path="/skills" element={<SkillsList />} />
-          <Route path="/skills/create" element={<SkillCreate />} />
-          <Route path="/skills/:id/edit" element={<SkillEdit />} />
-          <Route path="/skills/:id" element={<SkillDetail />} />
-
-          <Route path="/education" element={<EducationList />} />
-          <Route path="/education/create" element={<EducationCreate />} />
-          <Route path="/education/:id/edit" element={<EducationEdit />} />
-          <Route path="/education/:id" element={<EducationDetail />} />
-
-          <Route path="/resumes" element={<ResumesList />} />
-          <Route path="/resumes/create" element={<ResumeCreate />} />
-          <Route path="/resumes/:id/edit" element={<ResumeEdit />} />
-          <Route path="/resumes/:id/preview" element={<ResumePreview />} />
+          <Route path="/profiles/*" element={<ProfilesList />} />
+          <Route path="/experiences/*" element={<ExperienceList />} />
+          <Route path="/projects/*" element={<ProjectList />} />
+          <Route path="/skills/*" element={<SkillList />} />
+          <Route path="/education/*" element={<EducationList />} />
+          <Route path="/resumes/*" element={<ResumeList />} />
         </Routes>
       </main>
     </BrowserRouter>
